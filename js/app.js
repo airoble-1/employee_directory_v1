@@ -52,7 +52,7 @@ const DisplayEmployeeData = async function (url) {
 }
 
 // Display modal for selected employee
-function displayModal(employeeData) {
+const displayModal = function (employeeData) {
   const picture = employeeData.picture.large
   const firstName = employeeData.name.first
   const lastName = employeeData.name.last
@@ -63,6 +63,10 @@ function displayModal(employeeData) {
   const street = employeeData.location.street
   const state = employeeData.location.state
   const postalcode = employeeData.location.postcode
+  const birthDateUniversal = new Date(employeeData.dob.date)
+  const birthDate = `${birthDateUniversal.getDate()}/${
+    birthDateUniversal.getMonth() + 1
+  }/${birthDateUniversal.getFullYear().toString().substr(-2)}`
 
   const htmlModal = `
     <img
@@ -77,7 +81,7 @@ function displayModal(employeeData) {
     <hr />
     <p>${phone}</p>
     <p class="address">${street.number} ${street.name} ${city}, ${state} ${postalcode}</p>
-    <p>Birthday: 01/04/85</p>
+    <p>Birthday: ${birthDate}</p>
   </div>
   `
   modalContent.insertAdjacentHTML("beforeend", htmlModal)
@@ -93,11 +97,30 @@ function displayModal(employeeData) {
   // Listen for employee card clicks
   gridContainer.addEventListener("click", (e) => {
     if (e.target.nodeName !== "MAIN") {
-      let employeeCardNum = e.target
+      let employeeCardNumString = e.target
         .closest(".card")
         .getAttribute("data-index-number")
-      const selectedEmployee = employees[employeeCardNum]
+      let employeeCardNum = parseInt(employeeCardNumString, 10)
+      let selectedEmployee = employees[employeeCardNum]
       displayModal(selectedEmployee)
+      // Move left (i.e. decrease) to thru modals
+      overlay.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal-left")) {
+          employeeCardNum = employeeCardNum - 1
+          selectedEmployee = employees[employeeCardNum]
+          modalContent.innerHTML = ""
+          displayModal(selectedEmployee)
+          console.log(employeeCardNum)
+        }
+        // Move right (i.e. increase) to thru modals
+        if (e.target.classList.contains("modal-right")) {
+          employeeCardNum = employeeCardNum + 1
+          selectedEmployee = employees[employeeCardNum]
+          modalContent.innerHTML = ""
+          displayModal(selectedEmployee)
+          console.log(employeeCardNum)
+        }
+      })
     }
   })
 })()

@@ -98,6 +98,27 @@ input[type="search"] {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  font-size: 2rem;
+}
+
+.modal-left {
+  position: absolute;
+  top: 10rem;
+  left: -30rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 10rem;
+}
+
+.modal-right {
+  position: absolute;
+  top: 10rem;
+  right: -15rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 10rem;
 }
 
 /* Utility Styling */
