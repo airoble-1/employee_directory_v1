@@ -20,6 +20,10 @@ h1 {
   font-size: 3rem;
 }
 
+input {
+  margin: 0 auto;
+}
+
 h2 {
   margin-bottom: 0.75rem;
   font-size: 1.1rem;
@@ -34,6 +38,16 @@ hr {
   margin: 2rem;
 }
 /* Gallery Styling*/
+
+input[type="search"] {
+  width: 30rem;
+  height: 3rem;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
 .grid-container {
   margin: 0 auto;
   max-width: 1200px;
@@ -91,4 +105,8 @@ hr {
   display: none;
 }
 
+.container {
+  max-width: 100%;
+  display: flex;
+}
 /* Grid Styling */

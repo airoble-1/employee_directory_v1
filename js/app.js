@@ -10,6 +10,7 @@ const gridContainer = document.querySelector(".grid-container")
 const overlay = document.querySelector(".overlay")
 const modalContent = document.querySelector(".modal-content")
 const modalClose = document.querySelector(".modal-close")
+
 // Render error on screen
 const renderError = function (msg) {
   gridContainer.insertAdjacentText("beforeend", msg)
@@ -28,12 +29,13 @@ const DisplayEmployeeData = async function (url) {
       const picture = employeeData.picture.large
       const firstName = employeeData.name.first
       const lastName = employeeData.name.last
+      const fullName = firstName + lastName
       const email = employeeData.email
       const city = employeeData.location.city
 
       const htmlCard = `
     <div class="card"  data-index-number=${index}>
-    <img class="avatar" src=${picture} alt=${firstName} ${lastName} photo />
+    <img class="avatar" src=${picture} alt=${fullName} photo/>
     <div class="text-container">
       <h2>${firstName} ${lastName}</h2>
       <p>${email}</p>
@@ -54,6 +56,7 @@ function displayModal(employeeData) {
   const picture = employeeData.picture.large
   const firstName = employeeData.name.first
   const lastName = employeeData.name.last
+  const fullName = firstName + lastName
   const email = employeeData.email
   const city = employeeData.location.city
   const phone = employeeData.phone
@@ -65,7 +68,7 @@ function displayModal(employeeData) {
     <img
     class="avatar"
     src=${picture}
-    alt=${firstName} ${lastName} photo"
+    alt=${fullName} photo"
     />
   <div class="text-container">
     <h2>${firstName} ${lastName}</h2>
@@ -94,7 +97,6 @@ function displayModal(employeeData) {
         .closest(".card")
         .getAttribute("data-index-number")
       const selectedEmployee = employees[employeeCardNum]
-      console.log(selectedEmployee)
       displayModal(selectedEmployee)
     }
   })
@@ -107,3 +109,17 @@ gridContainer.addEventListener("click", (e) => {
     modalContent.innerHTML = ""
   }
 })
+
+function filterImages() {
+  let input = document.getElementById("search").value.toLowerCase()
+  let avatars = document.getElementsByClassName("avatar")
+  // Loop through all the employees images and hide the parent of those who don't match the search query
+  for (let i = 0; i < avatars.length; i++) {
+    let alternateText = avatars[i].alt.toLowerCase()
+    if (!alternateText.includes(input)) {
+      avatars[i].parentElement.style.display = "none"
+    } else {
+      avatars[i].parentElement.style.display = "flex"
+    }
+  }
+}
