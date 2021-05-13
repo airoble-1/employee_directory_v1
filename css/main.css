@@ -1,0 +1,94 @@
+/* CSS reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styling */
+body {
+  font-size: 62.5%;
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 5rem;
+}
+
+h1 {
+  margin: 0;
+  margin: 3rem 6rem;
+  text-align: center;
+  font-size: 3rem;
+}
+
+h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+p {
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+  color: #778;
+}
+
+hr {
+  margin: 2rem;
+}
+/* Gallery Styling*/
+.grid-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  width: 22rem;
+  align-items: center;
+  background: #fff;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+.avatar {
+  border-radius: 50%;
+  margin: 1.5rem 0.75rem;
+}
+/* Overlay with Modal */
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(100, 100, 100, 0.4);
+}
+
+.modal {
+  position: relative;
+  width: 375px;
+  margin: 10% auto auto;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #778;
+  border-radius: 5px;
+  padding: 30px 20px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Utility Styling */
+.hidden {
+  display: none;
+}
+
+/* Grid Styling */
