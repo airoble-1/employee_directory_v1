@@ -105,12 +105,15 @@ const displayModal = function (employeeData) {
       displayModal(selectedEmployee)
       // Move left (i.e. decrease) to thru modals
       overlay.addEventListener("click", (e) => {
+        if (employeeCardNum === 12 || employeeCardNum === -1) {
+          overlay.classList.add("hidden")
+          modalContent.innerHTML = ""
+        }
         if (e.target.classList.contains("modal-left")) {
           employeeCardNum = employeeCardNum - 1
           selectedEmployee = employees[employeeCardNum]
           modalContent.innerHTML = ""
           displayModal(selectedEmployee)
-          console.log(employeeCardNum)
         }
         // Move right (i.e. increase) to thru modals
         if (e.target.classList.contains("modal-right")) {
@@ -118,7 +121,6 @@ const displayModal = function (employeeData) {
           selectedEmployee = employees[employeeCardNum]
           modalContent.innerHTML = ""
           displayModal(selectedEmployee)
-          console.log(employeeCardNum)
         }
       })
     }
